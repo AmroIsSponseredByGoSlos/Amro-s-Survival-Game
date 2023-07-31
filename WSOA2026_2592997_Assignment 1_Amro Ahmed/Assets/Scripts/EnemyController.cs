@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public GameObject target;
     public int Health = 2;
     public GameObject Enemy;
+    public GameObject Ammo;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
     }
     void Die()
     {
+        Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
         Destroy(Enemy);
     }
 }

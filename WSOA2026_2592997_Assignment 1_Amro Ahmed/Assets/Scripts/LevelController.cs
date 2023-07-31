@@ -32,7 +32,7 @@ public class LevelController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            SpawnEnemy(2);
+            //SpawnEnemy(2);
         }
     }
     public void SpawnEnemy(int AmountToSpawn)
