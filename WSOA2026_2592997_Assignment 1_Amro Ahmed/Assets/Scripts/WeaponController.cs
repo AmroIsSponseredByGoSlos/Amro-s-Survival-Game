@@ -30,7 +30,9 @@ public class WeaponController : MonoBehaviour
     {
         Vector2 MousePos = Input.mousePosition;
         Vector2 MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
-        transform.up = MouseWorldPosition;
+        Pistol.transform.up = MouseWorldPosition;
+        Shotgun.transform.up = MouseWorldPosition;
+        SMG.transform.up = MouseWorldPosition;
         MouseWorldPosition.Normalize();
         if (Input.GetMouseButtonDown(0))
         {
