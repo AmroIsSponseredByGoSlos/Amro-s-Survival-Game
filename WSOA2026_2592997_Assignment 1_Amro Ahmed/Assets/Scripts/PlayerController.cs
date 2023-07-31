@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
     public WeaponController weaponController;
+    public int Health;
+    public GameObject[] Hearts;
     // Start is called before the first frame update
     void Start()
     {
         speed = 1.5f;
+        Health = 5;
         weaponController = GameObject.Find("Player").GetComponent<WeaponController>();
     }
 
@@ -25,6 +29,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.up = MoveDirection;
         }
+        if (Health == 0)
+        {
+            Die();
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -35,5 +43,9 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             weaponController.AmmoTxt.text = $"You have {weaponController.Ammo} bullets left";
         }
+    }
+    public void Die()
+    {
+        SceneManager.LoadScene("DeathScene");
     }
 }

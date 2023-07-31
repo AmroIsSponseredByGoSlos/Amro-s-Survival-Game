@@ -8,10 +8,13 @@ public class EnemyController : MonoBehaviour
     public int Health = 2;
     public GameObject Enemy;
     public GameObject Ammo;
+    public PlayerController playerController;
+    public float Timer;
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("Player");
+        playerController = target.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,22 @@ public class EnemyController : MonoBehaviour
             Enemy = gameObject;
             Health--;
             Destroy(col.gameObject);
+        }
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.name == "Player")
+        {
+            if (Timer < 1)
+            {
+                Timer += Time.deltaTime;
+            }
+            else
+            {
+                playerController.Health--;
+                playerController.Hearts[playerController.Health].SetActive(false);
+                Timer = 0;
+            }            
         }
     }
     void Die()
