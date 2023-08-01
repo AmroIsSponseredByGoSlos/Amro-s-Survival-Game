@@ -18,7 +18,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LevelTime = 3f;
+        LevelTime = 30f;
     }
 
     // Update is called once per frame

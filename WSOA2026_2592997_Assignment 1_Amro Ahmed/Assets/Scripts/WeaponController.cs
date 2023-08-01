@@ -17,7 +17,8 @@ public class WeaponController : MonoBehaviour
     public GameObject Pistol;
     public GameObject Shotgun;
     public GameObject SMG;
-
+    public float AmmoniaTime;
+    public bool AmmoniaActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +60,30 @@ public class WeaponController : MonoBehaviour
             SMG.SetActive(true);
             Weapon = 3;
         }
+        if (Input.GetKeyDown("q"))
+        {
+            AmmoniaActive = true;
+        }
+        if (AmmoniaActive)
+        {
+            if (AmmoniaTime < 5)
+            {
+                AmmoniaTime += Time.deltaTime;
+                Ammo = 1000;
+                if (Ammo > 100)
+                {
+                    AmmoTxt.text = $"You have infinite bullets left";
+                }
+            }
+            else
+            {
+                AmmoniaActive = false;
+                Ammo = 8;
+                AmmoTxt.text = $"You have {Ammo} bullets left";
+                AmmoniaTime = 0;
+            }
+        }
+        Debug.Log(AmmoniaTime);
     }
     public void Fire()
     {
