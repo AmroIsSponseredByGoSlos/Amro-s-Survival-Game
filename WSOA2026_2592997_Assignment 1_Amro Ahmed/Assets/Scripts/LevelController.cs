@@ -44,6 +44,22 @@ public class LevelController : MonoBehaviour
         if (LevelTime == 0 && CanvasOpen == false)
         {
             EndOfLevelCanvas.SetActive(true);
+            GameObject[] ActiveEnemies = GameObject.FindGameObjectsWithTag("Enemies");
+            if (ActiveEnemies != null)
+            {
+                foreach (GameObject f in ActiveEnemies)
+                {
+                    Destroy(f);
+                }
+            }
+            GameObject[] ActiveAmmo = GameObject.FindGameObjectsWithTag("Ammo");
+            if (ActiveAmmo != null)
+            {
+                foreach (GameObject f in ActiveAmmo)
+                {
+                    Destroy(f);
+                }
+            }
             Player.SetActive(false);
             Timer.SetActive(false);
             CanvasOpen = true;
