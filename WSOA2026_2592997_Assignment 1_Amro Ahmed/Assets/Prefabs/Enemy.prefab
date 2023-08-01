@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8235695532827744869}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,8 @@ MonoBehaviour:
   Health: 2
   Enemy: {fileID: 0}
   Ammo: {fileID: 6436160945838714252, guid: 496a048444ab22c4caa1fcecef3e44fe, type: 3}
+  playerController: {fileID: 0}
+  Timer: 0
 --- !u!61 &8235695532827744869
 BoxCollider2D:
   m_ObjectHideFlags: 0

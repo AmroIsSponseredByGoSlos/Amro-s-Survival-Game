@@ -86,9 +86,9 @@ public class WeaponController : MonoBehaviour
             }
         }
         //Annahilathori powerup
-        /*if (Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x"))
         {
-            GameObject[] ActiveEnemies = GameObject.Find("Enemy(Clone)");
+            GameObject[] ActiveEnemies = GameObject.FindGameObjectsWithTag("Enemies");
             if (ActiveEnemies != null)
             {
                 foreach (GameObject f in ActiveEnemies)
@@ -96,7 +96,7 @@ public class WeaponController : MonoBehaviour
                     Destroy(f);
                 }
             }            
-        }*/
+        }
     }
     public void Fire()
     {
