@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8235695532827744871}
   - component: {fileID: 8235695532827744870}
   - component: {fileID: 8235695532827744869}
-  m_Layer: 0
+  - component: {fileID: 6589702843214023726}
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemies
   m_Icon: {fileID: 0}
@@ -104,6 +105,9 @@ MonoBehaviour:
   Ammo: {fileID: 6436160945838714252, guid: 496a048444ab22c4caa1fcecef3e44fe, type: 3}
   playerController: {fileID: 0}
   Timer: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!61 &8235695532827744869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,3 +134,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &6589702843214023726
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235695532827744873}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 21.54
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

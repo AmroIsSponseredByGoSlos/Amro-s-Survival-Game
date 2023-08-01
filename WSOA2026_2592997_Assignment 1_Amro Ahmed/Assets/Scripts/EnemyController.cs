@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public GameObject Ammo;
     public PlayerController playerController;
     public float Timer;
+    public LayerMask layerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +60,24 @@ public class EnemyController : MonoBehaviour
     }
     void Die()
     {
-        Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
-        Destroy(Enemy);
+        for (int i = 0; i < 15; i++)
+        {
+            float AngleForRay = i * 22.5f;
+            float AngleRadians = AngleForRay * Mathf.Deg2Rad;
+            Vector2 TravelDirection = new Vector2(Mathf.Cos(AngleRadians), Mathf.Sin(AngleRadians));
+            if (Physics.Raycast(Enemy.transform.position, TravelDirection, out RaycastHit hitinfo, 2f, layerMask))
+            {
+                Debug.Log("Enemy Hit");
+                //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
+                //Destroy(Enemy);
+            }
+            else
+            {
+                Debug.Log("No Enemy Hit");
+                //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
+                //Destroy(Enemy);
+            }
+            Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
+        }       
     }
 }
