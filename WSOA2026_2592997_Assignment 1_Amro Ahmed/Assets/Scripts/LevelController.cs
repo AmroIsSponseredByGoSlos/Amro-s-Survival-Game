@@ -60,7 +60,7 @@ public class LevelController : MonoBehaviour
                     Destroy(f);
                 }
             }
-            Player.SetActive(false);
+            //Player.SetActive(false);
             Timer.SetActive(false);
             CanvasOpen = true;
         }

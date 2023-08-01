@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    //private GameObject ClickedBtn;
     public PlayerController playerController;
+    
     // Start is called before the first frame update
     void Start()
     {
-        //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -27,9 +27,10 @@ public class ShopController : MonoBehaviour
     }
     public void Buy(GameObject clickedBtn)
     {
-        if (clickedBtn.transform.parent.name == "Healacopter")
+        if (clickedBtn.transform.parent.name == "Healacopter" && playerController.Coins >= 50)
         {
             playerController.Health = 5;
+            playerController.Coins -= 50;
             foreach (GameObject f in playerController.Hearts)
             {
                 f.gameObject.SetActive(true);

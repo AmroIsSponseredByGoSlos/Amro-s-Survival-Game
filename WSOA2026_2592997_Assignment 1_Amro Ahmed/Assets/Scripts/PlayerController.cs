@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public WeaponController weaponController;
     public int Health;
     public GameObject[] Hearts;
+    public int Coins;
+    public TextMeshProUGUI CoinsTxt;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+        CoinsTxt.text = $"{Coins}$";
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "Ammo(Clone)")
         {
             weaponController.Ammo += 2;
+            Coins += 10;
             Destroy(collision.gameObject);
             weaponController.AmmoTxt.text = $"You have {weaponController.Ammo} bullets left";
         }

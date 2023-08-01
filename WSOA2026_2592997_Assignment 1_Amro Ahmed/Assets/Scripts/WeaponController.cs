@@ -19,6 +19,8 @@ public class WeaponController : MonoBehaviour
     public GameObject SMG;
     public float AmmoniaTime;
     public bool AmmoniaActive = false;
+    public GameObject ShopCanvas;
+    public GameObject EndOfRoundCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class WeaponController : MonoBehaviour
         Shotgun.transform.up = MouseWorldPosition;
         SMG.transform.up = MouseWorldPosition;
         MouseWorldPosition.Normalize();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && ShopCanvas.activeInHierarchy == false && EndOfRoundCanvas.activeInHierarchy == false)
         {
             Fire();
         }
