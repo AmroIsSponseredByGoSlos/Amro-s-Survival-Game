@@ -1154,6 +1154,8 @@ MonoBehaviour:
   CanvasOpen: 0
   Player: {fileID: 1021871808}
   Timer: {fileID: 2037417750}
+  Ammo: {fileID: 6436160945838714252, guid: 496a048444ab22c4caa1fcecef3e44fe, type: 3}
+  AmmoSpawned: 0
 --- !u!1 &122221488
 GameObject:
   m_ObjectHideFlags: 0

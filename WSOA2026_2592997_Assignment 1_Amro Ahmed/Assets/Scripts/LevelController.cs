@@ -15,6 +15,8 @@ public class LevelController : MonoBehaviour
     public bool CanvasOpen = false;
     public GameObject Player;
     public GameObject Timer;
+    public GameObject Ammo;
+    public bool AmmoSpawned;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,14 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelTime % 7 == 0 && !AmmoSpawned)
+        {
+            RandomAmmo();
+        }
+        if (LevelTime % 5 == 0)
+        {
+            AmmoSpawned = false;
+        }
         if (Interval < 1)
         {
             Interval += Time.deltaTime;
@@ -60,7 +70,6 @@ public class LevelController : MonoBehaviour
                     Destroy(f);
                 }
             }
-            //Player.SetActive(false);
             Timer.SetActive(false);
             CanvasOpen = true;
         }
@@ -72,5 +81,11 @@ public class LevelController : MonoBehaviour
             SpawnLocation = Random.Range(1, 8);
             Instantiate(Enemy, Spawns[SpawnLocation].transform.position, Quaternion.identity);
         }        
+    }
+    public void RandomAmmo()
+    {
+        Vector2 RandomPos = new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f));
+        Instantiate(Ammo, RandomPos, Quaternion.identity);
+        AmmoSpawned = true;
     }
 }
