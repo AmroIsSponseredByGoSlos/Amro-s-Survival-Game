@@ -11,10 +11,14 @@ public class LevelController : MonoBehaviour
     public float Interval = 0;
     public int SpawnLocation;
     public GameObject[] Spawns;
+    public GameObject EndOfLevelCanvas;
+    public bool CanvasOpen = false;
+    public GameObject Player;
+    public GameObject Timer;
     // Start is called before the first frame update
     void Start()
     {
-        LevelTime = 30f;
+        LevelTime = 3f;
     }
 
     // Update is called once per frame
@@ -26,13 +30,23 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            LevelTime--;
-            TimeTxt.text = $"{LevelTime} Seconds Left";
-            Interval = 0;
+            if (LevelTime > 0)
+            {
+                LevelTime--;
+                TimeTxt.text = $"{LevelTime} Seconds Left";
+                Interval = 0;
+            }            
         }
         if (Input.GetMouseButtonDown(0))
         {
             //SpawnEnemy(2);
+        }
+        if (LevelTime == 0 && CanvasOpen == false)
+        {
+            EndOfLevelCanvas.SetActive(true);
+            Player.SetActive(false);
+            Timer.SetActive(false);
+            CanvasOpen = true;
         }
     }
     public void SpawnEnemy(int AmountToSpawn)
