@@ -37,9 +37,9 @@ public class LevelController : MonoBehaviour
                 Interval = 0;
             }            
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            //SpawnEnemy(2);
+            SpawnEnemy(2);
         }
         if (LevelTime == 0 && CanvasOpen == false)
         {

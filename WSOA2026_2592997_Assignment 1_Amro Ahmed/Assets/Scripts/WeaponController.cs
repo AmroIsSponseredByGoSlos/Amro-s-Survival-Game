@@ -19,6 +19,7 @@ public class WeaponController : MonoBehaviour
     public GameObject SMG;
     public float AmmoniaTime;
     public bool AmmoniaActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,7 @@ public class WeaponController : MonoBehaviour
             SMG.SetActive(true);
             Weapon = 3;
         }
+        //Ammonia PowerUp
         if (Input.GetKeyDown("q"))
         {
             AmmoniaActive = true;
@@ -83,7 +85,18 @@ public class WeaponController : MonoBehaviour
                 AmmoniaTime = 0;
             }
         }
-        Debug.Log(AmmoniaTime);
+        //Annahilathori powerup
+        /*if (Input.GetKeyDown("x"))
+        {
+            GameObject[] ActiveEnemies = GameObject.Find("Enemy(Clone)");
+            if (ActiveEnemies != null)
+            {
+                foreach (GameObject f in ActiveEnemies)
+                {
+                    Destroy(f);
+                }
+            }            
+        }*/
     }
     public void Fire()
     {
@@ -99,6 +112,10 @@ public class WeaponController : MonoBehaviour
             if (bulletRb != null)
             {
                 bulletRb.velocity = new Vector3(FireDirection.x, FireDirection.y, 0f) * 7;
+            }
+            if (newBullet != null)
+            {
+                Destroy(newBullet, 0.7f);
             }
         }
         if (Weapon == 2 && Ammo > 4)
@@ -119,7 +136,11 @@ public class WeaponController : MonoBehaviour
                 {
                     bulletRb.velocity = new Vector3(FireDirection.x, FireDirection.y, 0f) * Random.Range(5, 7);
                 }
-            }
+                if (newBullet != null)
+                {
+                    Destroy(newBullet, 0.4f);
+                }
+            }            
         }
         if (Weapon == 3 && Ammo > 2)
         {
@@ -138,6 +159,10 @@ public class WeaponController : MonoBehaviour
                 if (bulletRb != null)
                 {
                     bulletRb.velocity = new Vector3(FireDirection.x, FireDirection.y, 0f) * Random.Range(5, 7);
+                }
+                if (newBullet != null)
+                {
+                    Destroy(newBullet, 1f);
                 }
             }
         }
