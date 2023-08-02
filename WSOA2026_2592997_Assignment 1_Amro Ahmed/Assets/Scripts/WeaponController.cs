@@ -25,12 +25,19 @@ public class WeaponController : MonoBehaviour
     public bool CanUseAnnahilathori = false;
     public bool CanUseShotgun = false;
     public bool CanUseSMG = false;
+    public AudioSource BGsrc;
+    public AudioSource Pistolsrc;
+    public AudioSource Shotgunsrc;
+    public AudioSource SMGsrc;
+    public AudioClip PistolSound, ShotgunSound, SMGSound, BGAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         Weapon = 1;
         Ammo = 8;
+        BGsrc.clip = BGAudio;
+        BGsrc.Play();
     }
 
     // Update is called once per frame
@@ -110,6 +117,8 @@ public class WeaponController : MonoBehaviour
     {
         if (Weapon == 1 && Ammo > 0)
         {
+            Pistolsrc.clip = PistolSound;
+            Pistolsrc.Play();
             SpawnPos = new Vector2(PistolSpawn.transform.position.x, PistolSpawn.transform.position.y);
             FireDirection = new Vector2(PistolSpawn.transform.up.x, PistolSpawn.transform.up.y);
             FireDirection.Normalize();
@@ -130,6 +139,8 @@ public class WeaponController : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
+                Shotgunsrc.clip = ShotgunSound;
+                Shotgunsrc.Play();
                 SpawnPos = new Vector2(ShotgunSpawn.transform.position.x, ShotgunSpawn.transform.position.y);
                 float randomX = Random.Range(0f, 0.5f);
                 float randomY = Random.Range(0f, 0.5f);
@@ -154,6 +165,8 @@ public class WeaponController : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
+                SMGsrc.clip = SMGSound;
+                SMGsrc.Play();
                 SpawnPos = new Vector2(SmgSpawn.transform.position.x, SmgSpawn.transform.position.y);
                 float randomX = Random.Range(0f, 0.2f);
                 float randomY = Random.Range(0f, 0.2f);
