@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         speed = 1.5f;
         Health = 5;
         weaponController = GameObject.Find("Player").GetComponent<WeaponController>();
-        Coins = 400;
     }
 
     // Update is called once per frame
