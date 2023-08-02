@@ -74,13 +74,13 @@ public class EnemyController : MonoBehaviour
                 enemyControllerScript.EnemySpeed =  2.5f;
                 Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
                 Debug.Log("Enemy Hit");                
-                //Destroy(Enemy);
+                Destroy(Enemy);
             }
             else
             {
                 Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
                 Debug.Log("No Enemy Hit");
-                //Destroy(Enemy);
+                Destroy(Enemy);
             }
         }
         //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
