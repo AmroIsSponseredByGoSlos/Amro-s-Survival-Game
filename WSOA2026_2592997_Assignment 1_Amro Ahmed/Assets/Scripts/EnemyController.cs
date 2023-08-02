@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject target;
     public int Health = 2;
+    public float EnemySpeed = 1.4f;
     public GameObject Enemy;
     public GameObject Ammo;
     public PlayerController playerController;
@@ -22,7 +23,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         Vector2 targetPos = new Vector2(target.transform.position.x, target.transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, 1.4f * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, EnemySpeed * Time.deltaTime);
         if (Health == 0)
         {
             Die();
@@ -65,18 +66,23 @@ public class EnemyController : MonoBehaviour
             float AngleForRay = i * 22.5f;
             float AngleRadians = AngleForRay * Mathf.Deg2Rad;
             Vector2 TravelDirection = new Vector2(Mathf.Cos(AngleRadians), Mathf.Sin(AngleRadians));
-            if (Physics.Raycast(Enemy.transform.position, TravelDirection, out RaycastHit hitinfo, 2f, layerMask))
+            RaycastHit2D HitInfo = Physics2D.Raycast(Enemy.transform.position, TravelDirection, 2f, layerMask);
+            if (HitInfo.collider != null)
             {
+                GameObject HitEnemy = HitInfo.collider.gameObject;
+                var enemyControllerScript = HitEnemy.GetComponent<EnemyController>();
+                enemyControllerScript.EnemySpeed =  2.5f;
+                Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
                 Debug.Log("Enemy Hit");                
-                Destroy(Enemy);
+                //Destroy(Enemy);
             }
             else
             {
+                Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
                 Debug.Log("No Enemy Hit");
-                Destroy(Enemy);
+                //Destroy(Enemy);
             }
-            Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
         }
-        Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
+        //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
     }
 }
