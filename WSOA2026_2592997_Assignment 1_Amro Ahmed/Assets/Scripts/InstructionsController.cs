@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InstructionsController : MonoBehaviour
 {
@@ -24,40 +25,60 @@ public class InstructionsController : MonoBehaviour
     {
         
     }
-    public void OnButtonClick(GameObject Button)
+    public void Item1Click()
     {
-        if (Button.transform.parent.name == "Items(1)")
-        {
-            Canvas1.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(2)")
-        {
-            Canvas2.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(3)")
-        {
-            Canvas3.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(4)")
-        {
-            Canvas4.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(5)")
-        {
-            Canvas5.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(6)")
-        {
-            Canvas6.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(7)")
-        {
-            Canvas7.SetActive(true);
-        }
-        if (Button.transform.parent.name == "Items(8)")
-        {
-            Canvas8.SetActive(true);
-        }
+        Canvas1.SetActive(true);
         CloseBtn.SetActive(true);
+    }
+    public void Item2Click()
+    {
+        Canvas2.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item3Click()
+    {
+        Canvas3.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item4Click()
+    {
+        Canvas4.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item5Click()
+    {
+        Canvas5.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item6Click()
+    {
+        Canvas6.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item7Click()
+    {
+        Canvas7.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void Item8Click()
+    {
+        Canvas8.SetActive(true);
+        CloseBtn.SetActive(true);
+    }
+    public void CloseBatn()
+    {
+        Canvas1.SetActive(false);
+        Canvas2.SetActive(false);
+        Canvas3.SetActive(false);
+        Canvas4.SetActive(false);
+        Canvas5.SetActive(false);
+        Canvas6.SetActive(false);
+        Canvas7.SetActive(false);
+        Canvas8.SetActive(false);
+        CloseBtn.SetActive(false);
+    }
+    public void Ready()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
