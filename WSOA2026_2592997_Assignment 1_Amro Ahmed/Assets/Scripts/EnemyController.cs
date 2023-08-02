@@ -70,6 +70,8 @@ public class EnemyController : MonoBehaviour
             if (HitInfo.collider != null)
             {
                 GameObject HitEnemy = HitInfo.collider.gameObject;
+                Renderer EnemyRenderer = HitEnemy.GetComponent<Renderer>();
+                EnemyRenderer.material.color = Color.red;
                 var enemyControllerScript = HitEnemy.GetComponent<EnemyController>();
                 enemyControllerScript.EnemySpeed =  2.5f;
                 Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
@@ -83,6 +85,6 @@ public class EnemyController : MonoBehaviour
                 Destroy(Enemy);
             }
         }
-        //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
+        Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
     }
 }
