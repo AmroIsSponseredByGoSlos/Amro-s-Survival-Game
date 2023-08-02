@@ -24,6 +24,7 @@ public class ShopController : MonoBehaviour
     {
         Debug.Log("Close Shop");
         levelController.LevelTime = 30f;
+        levelController.CanvasOpen = false;
     }
     public void OnOpenShopClick()
     {
