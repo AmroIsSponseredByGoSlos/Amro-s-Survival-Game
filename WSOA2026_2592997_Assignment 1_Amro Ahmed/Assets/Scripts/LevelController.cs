@@ -17,10 +17,13 @@ public class LevelController : MonoBehaviour
     public GameObject Timer;
     public GameObject Ammo;
     public bool AmmoSpawned;
+    public bool EnemiesSpawned;
+    public int NoOfEnemiesForLevel;
     // Start is called before the first frame update
     void Start()
     {
         LevelTime = 30f;
+        NoOfEnemiesForLevel = 10;
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class LevelController : MonoBehaviour
         if (LevelTime % 5 == 0)
         {
             AmmoSpawned = false;
+            EnemiesSpawned = false;
         }
         if (Interval < 1)
         {
@@ -47,9 +51,9 @@ public class LevelController : MonoBehaviour
                 Interval = 0;
             }            
         }
-        if (Input.GetMouseButtonDown(1))
+        if (LevelTime % 7 == 0 && !EnemiesSpawned)
         {
-            SpawnEnemy(2);
+            SpawnEnemy((int)(NoOfEnemiesForLevel / 4));
         }
         if (LevelTime == 0 && CanvasOpen == false)
         {
@@ -80,7 +84,8 @@ public class LevelController : MonoBehaviour
         {
             SpawnLocation = Random.Range(1, 8);
             Instantiate(Enemy, Spawns[SpawnLocation].transform.position, Quaternion.identity);
-        }        
+        }
+        EnemiesSpawned = true;
     }
     public void RandomAmmo()
     {
