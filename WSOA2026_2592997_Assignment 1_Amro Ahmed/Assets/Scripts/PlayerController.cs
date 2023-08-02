@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public GameObject[] Hearts;
     public int Coins;
     public TextMeshProUGUI CoinsTxt;
+    public bool Switched = false;
+    public int CCTime = 0;
+    public float timer = 0f;
+    public TextMeshProUGUI CCtext;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +38,27 @@ public class PlayerController : MonoBehaviour
             Die();
         }
         CoinsTxt.text = $"{Coins}$";
+        GameObject[] ActiveEnemies = GameObject.FindGameObjectsWithTag("Enemies");
+        foreach (GameObject f in ActiveEnemies)
+        {
+            if (CCTime > 0)
+            {
+                if (timer < 1)
+                {
+                    timer += Time.deltaTime;
+                }
+                else
+                {
+                    CCTime--;
+                    CCtext.text = $"{CCTime}";
+                    timer = 0;
+                }
+            }
+            else
+            {
+                CCtext.text = "Ready";
+            }
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

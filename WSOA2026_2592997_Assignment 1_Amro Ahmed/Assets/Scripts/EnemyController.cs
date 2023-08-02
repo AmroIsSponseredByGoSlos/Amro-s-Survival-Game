@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class EnemyController : MonoBehaviour
     public LayerMask layerMask;
     public Renderer Enemyrenderer;
     public bool EnemyEnraged = false;
+    public bool HaveSwitched = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,17 +98,20 @@ public class EnemyController : MonoBehaviour
     }
     void OnMouseOver()
     {
-        Enemyrenderer = gameObject.GetComponent<Renderer>();
-        Enemyrenderer.material.color = Color.green;
-        bool HaveSwitched = false;
-        if (Input.GetMouseButtonDown(1) && !HaveSwitched)
+        if (playerController.CCTime == 0)
         {
-            Vector2 targetPos = new Vector2(target.transform.position.x, target.transform.position.y);
-            Vector2 EnemyPos = new Vector2(Enemy.transform.position.x, Enemy.transform.position.y);
-            Enemy.transform.position = targetPos;            
-            target.transform.position = EnemyPos;
-            HaveSwitched = true;
-        }
+            Enemyrenderer = gameObject.GetComponent<Renderer>();
+            Enemyrenderer.material.color = Color.green;
+            if (Input.GetMouseButtonDown(1) && !HaveSwitched)
+            {
+                playerController.CCTime = 7;
+                Vector2 targetPos = new Vector2(target.transform.position.x, target.transform.position.y);
+                Vector2 EnemyPos = new Vector2(Enemy.transform.position.x, Enemy.transform.position.y);
+                Enemy.transform.position = targetPos;
+                target.transform.position = EnemyPos;
+                HaveSwitched = true;
+            }
+        }        
     }
     void OnMouseExit()
     {
