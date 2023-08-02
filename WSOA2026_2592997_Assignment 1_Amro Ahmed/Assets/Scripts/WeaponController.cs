@@ -157,7 +157,7 @@ public class WeaponController : MonoBehaviour
                 }
                 if (newBullet != null)
                 {
-                    Destroy(newBullet, 0.4f);
+                    Destroy(newBullet, 1.4f);
                 }
             }            
         }

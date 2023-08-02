@@ -47,6 +47,12 @@ public class ShopController : MonoBehaviour
             playerController.Coins -= 50;
             weaponController.CanUseAmmonia = true;
         }
+        if (clickedBtn.transform.parent.name == "Ammo" && playerController.Coins >= 15)
+        {
+            playerController.Coins -= 15;
+            weaponController.Ammo += 3;
+            weaponController.AmmoTxt.text = $"You have {weaponController.Ammo} bullets left";
+        }
         if (clickedBtn.transform.parent.name == "Annahilathori" && playerController.Coins >= 100)
         {
             playerController.Coins -= 100;

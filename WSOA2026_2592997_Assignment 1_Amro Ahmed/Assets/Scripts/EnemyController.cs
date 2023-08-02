@@ -16,12 +16,14 @@ public class EnemyController : MonoBehaviour
     public Renderer Enemyrenderer;
     public bool EnemyEnraged = false;
     public bool HaveSwitched = false;
+    public WeaponController weaponController;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("Player");
         playerController = target.GetComponent<PlayerController>();
+        weaponController = target.GetComponent<WeaponController>();
     }
 
     // Update is called once per frame
@@ -40,10 +42,18 @@ public class EnemyController : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
+        
         if (col.gameObject.name == "Bullet(Clone)")
         {
-            Health--;
-            Destroy(col.gameObject);
+            if (weaponController.Weapon == 2)
+            {
+                Health--;
+            }
+            else
+            {
+                Health--;
+                Destroy(col.gameObject);
+            }                
         }
         if (col.gameObject.name == "Player")
         {
