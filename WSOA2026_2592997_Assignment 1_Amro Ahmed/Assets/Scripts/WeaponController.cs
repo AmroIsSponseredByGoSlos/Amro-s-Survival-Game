@@ -21,6 +21,10 @@ public class WeaponController : MonoBehaviour
     public bool AmmoniaActive = false;
     public GameObject ShopCanvas;
     public GameObject EndOfRoundCanvas;
+    public bool CanUseAmmonia = false;
+    public bool CanUseAnnahilathori = false;
+    public bool CanUseShotgun = false;
+    public bool CanUseSMG = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,14 +53,14 @@ public class WeaponController : MonoBehaviour
             SMG.SetActive(false);
             Weapon = 1;
         }
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKeyDown("2") && CanUseShotgun)
         {
             Pistol.SetActive(false);
             Shotgun.SetActive(true);
             SMG.SetActive(false);
             Weapon = 2;
         }
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown("3") && CanUseSMG)
         {
             Pistol.SetActive(false);
             Shotgun.SetActive(false);
@@ -64,9 +68,10 @@ public class WeaponController : MonoBehaviour
             Weapon = 3;
         }
         //Ammonia PowerUp
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("q") && CanUseAmmonia)
         {
             AmmoniaActive = true;
+            CanUseAmmonia = false;
         }
         if (AmmoniaActive)
         {
@@ -88,8 +93,9 @@ public class WeaponController : MonoBehaviour
             }
         }
         //Annahilathori powerup
-        if (Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x") && CanUseAnnahilathori)
         {
+            CanUseAnnahilathori = false;
             GameObject[] ActiveEnemies = GameObject.FindGameObjectsWithTag("Enemies");
             if (ActiveEnemies != null)
             {

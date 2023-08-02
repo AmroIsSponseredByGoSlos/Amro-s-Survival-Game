@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         speed = 1.5f;
         Health = 5;
         weaponController = GameObject.Find("Player").GetComponent<WeaponController>();
+        Coins = 400;
     }
 
     // Update is called once per frame
@@ -27,11 +28,6 @@ public class PlayerController : MonoBehaviour
         float VerticalMove = Input.GetAxis("Vertical");
         Vector2 MoveDirection = new Vector2(HorizontalMove, VerticalMove);
         transform.Translate(MoveDirection * speed * Time.deltaTime, Space.World);
-        MoveDirection.Normalize();
-        if (MoveDirection != Vector2.zero)
-        {
-            transform.up = MoveDirection;
-        }
         if (Health == 0)
         {
             Die();
