@@ -6,11 +6,13 @@ public class ShopController : MonoBehaviour
 {
     public PlayerController playerController;
     public WeaponController weaponController;
+    public LevelController levelController;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         weaponController = GameObject.Find("Player").GetComponent<WeaponController>();
+        levelController = GameObject.Find("UICanvas").GetComponent<LevelController>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class ShopController : MonoBehaviour
     public void OnShopCloseCLick()
     {
         Debug.Log("Close Shop");
+        levelController.LevelTime = 30f;
     }
     public void OnOpenShopClick()
     {
@@ -45,7 +48,7 @@ public class ShopController : MonoBehaviour
         if (clickedBtn.transform.parent.name == "Annahilathori" && playerController.Coins >= 100)
         {
             playerController.Coins -= 100;
-            weaponController.CanUseAmmonia = true;
+            weaponController.CanUseAnnahilathori = true;
         }
         if (clickedBtn.transform.parent.name == "Shotgun" && playerController.Coins >= 70)
         {

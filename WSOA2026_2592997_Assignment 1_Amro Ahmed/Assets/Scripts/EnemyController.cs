@@ -67,17 +67,16 @@ public class EnemyController : MonoBehaviour
             Vector2 TravelDirection = new Vector2(Mathf.Cos(AngleRadians), Mathf.Sin(AngleRadians));
             if (Physics.Raycast(Enemy.transform.position, TravelDirection, out RaycastHit hitinfo, 2f, layerMask))
             {
-                Debug.Log("Enemy Hit");
-                //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
-                //Destroy(Enemy);
+                Debug.Log("Enemy Hit");                
+                Destroy(Enemy);
             }
             else
             {
                 Debug.Log("No Enemy Hit");
-                //Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
-                //Destroy(Enemy);
+                Destroy(Enemy);
             }
             Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
-        }       
+        }
+        Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
     }
 }

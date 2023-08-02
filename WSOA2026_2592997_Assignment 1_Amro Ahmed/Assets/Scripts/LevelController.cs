@@ -29,7 +29,7 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LevelTime % 7 == 0 && !AmmoSpawned)
+        if (LevelTime % 7 == 0 && !AmmoSpawned && LevelTime != 0)
         {
             RandomAmmo();
         }
@@ -51,7 +51,7 @@ public class LevelController : MonoBehaviour
                 Interval = 0;
             }            
         }
-        if (LevelTime % 7 == 0 && !EnemiesSpawned)
+        if (LevelTime % 7 == 0 && !EnemiesSpawned && LevelTime != 0)
         {
             SpawnEnemy((int)(NoOfEnemiesForLevel / 4));
         }
