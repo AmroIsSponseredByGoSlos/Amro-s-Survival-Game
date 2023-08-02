@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public PlayerController playerController;
     public float Timer;
     public LayerMask layerMask;
+    public Renderer Enemyrenderer;
+    public bool EnemyEnraged = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +30,15 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
+        if (gameObject != null)
+        {
+            Enemy = gameObject;
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name == "Bullet(Clone)")
         {
-            Enemy = gameObject;
             Health--;
             Destroy(col.gameObject);
         }
@@ -77,6 +82,7 @@ public class EnemyController : MonoBehaviour
                 Debug.DrawRay(Enemy.transform.position, TravelDirection * 2f, Color.red);
                 Debug.Log("Enemy Hit");                
                 Destroy(Enemy);
+                enemyControllerScript.EnemyEnraged = true;
             }
             else
             {
@@ -86,5 +92,30 @@ public class EnemyController : MonoBehaviour
             }
         }
         Instantiate(Ammo, Enemy.transform.position, Quaternion.identity);
+    }
+    void OnMouseOver()
+    {
+        Enemyrenderer = gameObject.GetComponent<Renderer>();
+        Enemyrenderer.material.color = Color.green;
+        bool HaveSwitched = false;
+        if (Input.GetMouseButtonDown(1) && !HaveSwitched)
+        {
+            Vector2 targetPos = new Vector2(target.transform.position.x, target.transform.position.y);
+            Vector2 EnemyPos = new Vector2(Enemy.transform.position.x, Enemy.transform.position.y);
+            Enemy.transform.position = targetPos;            
+            target.transform.position = EnemyPos;
+            HaveSwitched = true;
+        }
+    }
+    void OnMouseExit()
+    {
+        if (EnemyEnraged)
+        {
+            Enemyrenderer.material.color = Color.red;
+        }
+        else
+        {
+            Enemyrenderer.material.color = Color.white;
+        }
     }
 }

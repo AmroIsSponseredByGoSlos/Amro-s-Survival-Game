@@ -25,6 +25,7 @@ public class ShopController : MonoBehaviour
         Debug.Log("Close Shop");
         levelController.LevelTime = 30f;
         levelController.CanvasOpen = false;
+        levelController.NoOfEnemiesForLevel += 5;
     }
     public void OnOpenShopClick()
     {
