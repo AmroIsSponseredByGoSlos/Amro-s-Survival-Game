@@ -54,6 +54,7 @@ public class LevelController : MonoBehaviour
         if (LevelTime % 7 == 0 && !EnemiesSpawned && LevelTime != 0)
         {
             SpawnEnemy((int)(NoOfEnemiesForLevel / 4));
+            Debug.Log($"{(int)(NoOfEnemiesForLevel / 4)}, {NoOfEnemiesForLevel}");
         }
         if (LevelTime == 0 && CanvasOpen == false)
         {
@@ -80,7 +81,7 @@ public class LevelController : MonoBehaviour
     }
     public void SpawnEnemy(int AmountToSpawn)
     {
-        for (int i = 0; i < AmountToSpawn; i++)
+        for (int i = 0; i <= AmountToSpawn; i++)
         {
             SpawnLocation = Random.Range(1, 8);
             Instantiate(Enemy, Spawns[SpawnLocation].transform.position, Quaternion.identity);

@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
             playerController.Hearts[playerController.Health].SetActive(false);
         }
     }
-    void OnCollisionStay2D(Collision2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
         {
