@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
             Enemy = gameObject;
         }
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         
         if (col.gameObject.name == "Bullet(Clone)")

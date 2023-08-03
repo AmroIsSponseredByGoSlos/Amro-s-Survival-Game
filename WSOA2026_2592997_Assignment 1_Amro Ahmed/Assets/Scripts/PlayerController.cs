@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    /*public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Ammo(Clone)")
         {
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             weaponController.AmmoTxt.text = $"You have {weaponController.Ammo} bullets left";
         }
-    }
+    }*/
     public void Die()
     {
         SceneManager.LoadScene("DeathScene");
