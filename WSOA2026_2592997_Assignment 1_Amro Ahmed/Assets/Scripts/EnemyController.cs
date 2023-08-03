@@ -45,15 +45,8 @@ public class EnemyController : MonoBehaviour
         
         if (col.gameObject.name == "Bullet(Clone)")
         {
-            if (weaponController.Weapon == 2)
-            {
-                Health--;
-            }
-            else
-            {
-                Health--;
-                Destroy(col.gameObject);
-            }                
+            Health -= 2;
+            Destroy(col.gameObject);              
         }
         if (col.gameObject.name == "Player")
         {
@@ -61,7 +54,7 @@ public class EnemyController : MonoBehaviour
             playerController.Hearts[playerController.Health].SetActive(false);
         }
     }
-    void OnTriggerStay2D(Collider2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.name == "Player")
         {

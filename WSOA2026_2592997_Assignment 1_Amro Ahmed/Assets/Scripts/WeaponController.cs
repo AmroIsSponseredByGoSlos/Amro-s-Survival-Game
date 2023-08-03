@@ -30,6 +30,8 @@ public class WeaponController : MonoBehaviour
     public AudioSource Shotgunsrc;
     public AudioSource SMGsrc;
     public AudioClip PistolSound, ShotgunSound, SMGSound, BGAudio;
+    public GameObject AmmoniaThing;
+    public GameObject AnnahilathoriThing;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +80,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown("q") && CanUseAmmonia)
         {
             AmmoniaActive = true;
+            AmmoniaThing.SetActive(false);
             CanUseAmmonia = false;
         }
         if (AmmoniaActive)
@@ -103,6 +106,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown("x") && CanUseAnnahilathori)
         {
             CanUseAnnahilathori = false;
+            AnnahilathoriThing.SetActive(false);
             GameObject[] ActiveEnemies = GameObject.FindGameObjectsWithTag("Enemies");
             if (ActiveEnemies != null)
             {
@@ -142,8 +146,8 @@ public class WeaponController : MonoBehaviour
                 Shotgunsrc.clip = ShotgunSound;
                 Shotgunsrc.Play();
                 SpawnPos = new Vector2(ShotgunSpawn.transform.position.x, ShotgunSpawn.transform.position.y);
-                float randomX = Random.Range(0f, 0.5f);
-                float randomY = Random.Range(0f, 0.5f);
+                float randomX = Random.Range(0f, 0.8f);
+                float randomY = Random.Range(0f, 0.8f);
                 FireDirection = new Vector2(ShotgunSpawn.transform.up.x + randomX, ShotgunSpawn.transform.up.y + randomY);
                 FireDirection.Normalize();
                 FireDirection.Normalize();

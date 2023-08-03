@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopController : MonoBehaviour
 {
     public PlayerController playerController;
     public WeaponController weaponController;
     public LevelController levelController;
+    public TextMeshProUGUI XpEnemiesTxt;
+    public GameObject AmmoniaThing;
+    public GameObject AnnahilathoriThing;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,13 @@ public class ShopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameObject.Find("XpEnemies") != null)
+        {
+            if (GameObject.Find("XpEnemies").activeInHierarchy == true)
+            {
+                XpEnemiesTxt.text = $"{levelController.NoOfEnemiesForLevel} expected for this level. ({levelController.NoOfEnemiesForLevel * 2} Bullets required)";
+            }
+        }        
     }
     public void OnShopCloseCLick()
     {
@@ -29,7 +39,7 @@ public class ShopController : MonoBehaviour
     public void OnOpenShopClick()
     {
         Debug.Log("Open Shop");
-        levelController.NoOfEnemiesForLevel = levelController.NoOfEnemiesForLevel + 3;
+        levelController.NoOfEnemiesForLevel = levelController.NoOfEnemiesForLevel + 3;        
     }
     public void Buy(GameObject clickedBtn)
     {
@@ -46,6 +56,7 @@ public class ShopController : MonoBehaviour
         {
             playerController.Coins -= 50;
             weaponController.CanUseAmmonia = true;
+            AmmoniaThing.SetActive(true);
         }
         if (clickedBtn.transform.parent.name == "Ammo" && playerController.Coins >= 15)
         {
@@ -57,16 +68,19 @@ public class ShopController : MonoBehaviour
         {
             playerController.Coins -= 100;
             weaponController.CanUseAnnahilathori = true;
+            AmmoniaThing.SetActive(true);
         }
         if (clickedBtn.transform.parent.name == "Shotgun" && playerController.Coins >= 70)
         {
             playerController.Coins -= 70;
             weaponController.CanUseShotgun = true;
+            Destroy(clickedBtn);
         }
         if (clickedBtn.transform.parent.name == "SMG" && playerController.Coins >= 120)
         {
-            playerController.Coins -= 120;
+            playerController.Coins -= 50;
             weaponController.CanUseSMG = true;
+            Destroy(clickedBtn);
         }
     }
 }

@@ -25,7 +25,7 @@ public class AmmoScript : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         if (collision.gameObject.name == "Player")
         {
-            weaponController.Ammo += 2;
+            weaponController.Ammo += 1;
             playerController.Coins += 10;
             Destroy(Ammo);
             weaponController.AmmoTxt.text = $"You have {weaponController.Ammo} bullets left";
